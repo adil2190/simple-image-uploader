@@ -7,7 +7,7 @@ type UploadWrapperProps = {
 function UploadWrapper({ children }: UploadWrapperProps) {
   return (
     <div
-      className="w-[402px] h-[469px] bg-white 
+      className="w-[402px] min-h-[469px] bg-white 
     shadow-md rounded-[12px] flex 
     flex-col items-center"
     >
