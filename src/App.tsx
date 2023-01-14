@@ -3,7 +3,7 @@ import BeforeUpload from "./components/BeforeUpload";
 
 function App() {
   return (
-    <div className="bg-[#fafafa] h-screen w-screen">
+    <div className="bg-[#fafafa] h-screen w-screen flex items-center justify-center">
       <BeforeUpload />
     </div>
   );
