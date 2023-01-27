@@ -7,6 +7,9 @@ module.exports = {
         lightBlue: "rgba(151, 190, 244, 0.1)",
       },
     },
+    fontFamily: {
+      sans: ["Poppins", "Arial", "sans-serif"],
+    },
   },
   plugins: [],
 };

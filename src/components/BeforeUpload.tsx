@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Heading from "./text/Heading";
 import Label from "./text/Label";
 import UploadWrapper from "./wrappers/UploadWrapper";
@@ -7,6 +7,8 @@ import GreyLabel from "./text/GreyLabel";
 import BlueButton from "./buttons/BlueButton";
 
 function BeforeUpload() {
+  const fileRef = useRef<HTMLInputElement>(null);
+
   return (
     <UploadWrapper>
       <Heading>Upload your image</Heading>
@@ -14,10 +16,11 @@ function BeforeUpload() {
       <DragFiles />
       <GreyLabel>Or</GreyLabel>
       <div className="mt-[20px]" />
+      <input type="file" className="hidden" ref={fileRef} />
       <BlueButton
         label="Choose a file"
         onClick={(e) => {
-          console.log(e);
+          if (fileRef.current) fileRef.current.click();
         }}
       />
     </UploadWrapper>
