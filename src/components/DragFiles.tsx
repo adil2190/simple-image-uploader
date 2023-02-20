@@ -1,9 +1,15 @@
-import React, { useCallback } from "react";
+import React, { Dispatch, SetStateAction, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import Placeholder from "../assets/upload_placeholder.svg";
+import Cancel from "../assets/cancel.svg";
 import GreyLabel from "./text/GreyLabel";
 
-function DragFiles() {
+type DragFilesProps = {
+  image: string | null;
+  setImage: Dispatch<SetStateAction<string | null>>;
+};
+
+function DragFiles({ image, setImage }: DragFilesProps) {
   const onDrop = useCallback((acceptedFiles: File[]) => {
     console.log(acceptedFiles);
   }, []);
@@ -18,7 +24,24 @@ function DragFiles() {
       {...getRootProps()}
     >
       <input {...getInputProps()} />
-      <img src={Placeholder} alt="placeholder" />
+      <div className="relative">
+        {image && (
+          <img
+            src={Cancel}
+            alt="cancel"
+            className="h-[25px] absolute -top-3 -right-3"
+            onClick={(e) => {
+              e.stopPropagation();
+              setImage(null);
+            }}
+          />
+        )}
+        <img
+          src={image || Placeholder}
+          className={image ? `h-[100px] w-[100px]` : ""}
+          alt="placeholder"
+        />
+      </div>
       <GreyLabel>Drag & Drop your image here</GreyLabel>
     </div>
   );

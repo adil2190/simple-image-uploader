@@ -6,8 +6,8 @@ import Uploading from "./components/Uploading";
 function App() {
   return (
     <div className="bg-[#fafafa] h-screen w-screen flex items-center justify-center">
-      {/* <BeforeUpload /> */}
-      <Uploading />
+      <BeforeUpload />
+      {/* <Uploading /> */}
     </div>
   );
 }
