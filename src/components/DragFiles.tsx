@@ -7,13 +7,27 @@ import GreyLabel from "./text/GreyLabel";
 type DragFilesProps = {
   image: string | null;
   setImage: Dispatch<SetStateAction<string | null>>;
+  imageFile: File | null;
+  setImageFile: Dispatch<SetStateAction<File | null>>;
 };
 
-function DragFiles({ image, setImage }: DragFilesProps) {
+function DragFiles({
+  image,
+  setImage,
+  imageFile,
+  setImageFile,
+}: DragFilesProps) {
   const onDrop = useCallback((acceptedFiles: File[]) => {
-    console.log(acceptedFiles);
+    setImage(URL.createObjectURL(acceptedFiles[0]));
+    setImageFile(acceptedFiles[0]);
   }, []);
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: {
+      "image/png": [".png", ".jpg", ".jpeg"],
+    },
+    multiple: false,
+  });
 
   return (
     <div
