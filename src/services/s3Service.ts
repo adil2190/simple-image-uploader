@@ -1,20 +1,13 @@
 import AWS from "aws-sdk";
 
 const s3 = new AWS.S3({
-  accessKeyId: "test",
-  secretAccessKey: "test",
+  accessKeyId: import.meta.env.VITE_AWS_ACCESS_KEY_ID,
+  secretAccessKey: import.meta.env.VITE_AWS_SECRET_ACCESS_KEY,
   region: "us-west-2",
 });
 
-type s3FileUploadResponse = {
-  Location: string;
-  Key: string;
-  Bucket: string;
-  key: string;
-};
-
 export const s3FileUpload = (file: File)  => {
-  return new Promise<s3FileUploadResponse>((resolve, reject) => {
+  return new Promise<AWS.S3.ManagedUpload.SendData>((resolve, reject) => {
     const params = {
       Bucket: "mirzaadil",
       Key: file.name,

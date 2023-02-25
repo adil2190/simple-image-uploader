@@ -10,13 +10,6 @@ import BlueButton from "./buttons/BlueButton";
 
 import { s3FileUpload } from "../services/s3Service";
 
-type s3FileUploadResponse = {
-  Location: string;
-  Key: string;
-  Bucket: string;
-  key: string;
-};
-
 function BeforeUpload() {
   const fileRef = useRef<HTMLInputElement>(null);
   const [imagePreview, setImagePreview] = React.useState<string | null>(null);
@@ -61,9 +54,8 @@ function BeforeUpload() {
               onClick={async (e) => {
                 if (imageFile) {
                   try {
-                    const result: s3FileUploadResponse = await s3FileUpload(
-                      imageFile
-                    );
+                    const result: AWS.S3.ManagedUpload.SendData =
+                      await s3FileUpload(imageFile);
                     console.log(result.Location);
                   } catch (error) {
                     console.log(error);
