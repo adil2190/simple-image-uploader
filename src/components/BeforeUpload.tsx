@@ -3,9 +3,11 @@ import AWS from "aws-sdk";
 
 // @ts-ignore
 import Heading from "./text/Heading";
+// @ts-ignore
 import Label from "./text/Label";
 import UploadWrapper from "./wrappers/UploadWrapper";
 import DragFiles from "./DragFiles";
+// @ts-ignore
 import GreyLabel from "./text/GreyLabel";
 import BlueButton from "./buttons/BlueButton";
 
