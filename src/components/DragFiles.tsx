@@ -2,7 +2,6 @@ import React, { Dispatch, SetStateAction, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import Placeholder from "../assets/upload_placeholder.svg";
 import Cancel from "../assets/cancel.svg";
-// @ts-ignore
 import GreyLabel from "./text/GreyLabel";
 
 type DragFilesProps = {
