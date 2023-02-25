@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import AWS from "aws-sdk";
 
+// @ts-ignore
 import Heading from "./text/Heading";
 import Label from "./text/Label";
 import UploadWrapper from "./wrappers/UploadWrapper";
