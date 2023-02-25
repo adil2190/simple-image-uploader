@@ -10,7 +10,7 @@ function BlueButton({ label, onClick, classes }: BlueButtonProps) {
   return (
     <button
       onClick={onClick}
-      className={`min-w-[101px] p-[10px] bg-[#2F80ED] text-white rounded-[8px] text-[13px] ${classes}`}
+      className={`min-w-[101px] flex items-center justify-center p-[10px] bg-[#2F80ED] text-white rounded-[8px] text-[13px] ${classes}`}
     >
       {label}
     </button>

@@ -10,10 +10,31 @@ import BlueButton from "./buttons/BlueButton";
 
 import { s3FileUpload } from "../services/s3Service";
 
-function BeforeUpload() {
+type BeforeUploadProps = {
+  setIsUploading: React.Dispatch<React.SetStateAction<Boolean>>;
+  setUrl: React.Dispatch<React.SetStateAction<string>>;
+};
+
+function BeforeUpload({ setIsUploading, setUrl }: BeforeUploadProps) {
   const fileRef = useRef<HTMLInputElement>(null);
   const [imagePreview, setImagePreview] = React.useState<string | null>(null);
   const [imageFile, setImageFile] = React.useState<File | null>(null);
+
+  const handleUpload = async () => {
+    if (imageFile) {
+      try {
+        setIsUploading(true);
+        const result: AWS.S3.ManagedUpload.SendData = await s3FileUpload(
+          imageFile
+        );
+        setUrl(result.Location);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsUploading(false);
+      }
+    }
+  };
 
   return (
     <UploadWrapper>
@@ -49,20 +70,7 @@ function BeforeUpload() {
         {imagePreview && (
           <>
             <div className="w-[20px]" />
-            <BlueButton
-              label="+ Upload"
-              onClick={async (e) => {
-                if (imageFile) {
-                  try {
-                    const result: AWS.S3.ManagedUpload.SendData =
-                      await s3FileUpload(imageFile);
-                    console.log(result.Location);
-                  } catch (error) {
-                    console.log(error);
-                  }
-                }
-              }}
-            />
+            <BlueButton label="+ Upload" onClick={handleUpload} />
           </>
         )}
       </div>
