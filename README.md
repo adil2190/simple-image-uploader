@@ -8,15 +8,15 @@
 
 <div align="center">
   <h3>
-    <a href="https://dev-challenges-b1509.web.app/">
+    <a href="https://dev-challenges-b1509.web.app/" target="_blank">
       Demo
     </a>
     <span> | </span>
-    <a href="https://{your-url-to-the-solution}">
+    <a href="https://{your-url-to-the-solution}" target="_blank">
       Solution
     </a>
     <span> | </span>
-    <a href="https://devchallenges.io/challenges/O2iGT9yBd6xZBrOcVirx">
+    <a href="https://devchallenges.io/challenges/O2iGT9yBd6xZBrOcVirx" target="_blank">
       Challenge
     </a>
   </h3>
