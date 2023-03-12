@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import AWS from "aws-sdk";
 
 import Heading from "./text/Heading";
 import Label from "./text/Label";
@@ -7,8 +6,7 @@ import UploadWrapper from "./wrappers/UploadWrapper";
 import DragFiles from "./DragFiles";
 import GreyLabel from "./text/GreyLabel";
 import BlueButton from "./buttons/BlueButton";
-
-import { s3FileUpload } from "../services/s3Service";
+import { upload_file } from "../services/storage";
 
 type BeforeUploadProps = {
   setIsUploading: React.Dispatch<React.SetStateAction<Boolean>>;
@@ -24,10 +22,12 @@ function BeforeUpload({ setIsUploading, setUrl }: BeforeUploadProps) {
     if (imageFile) {
       try {
         setIsUploading(true);
-        const result: AWS.S3.ManagedUpload.SendData = await s3FileUpload(
-          imageFile
-        );
-        setUrl(result.Location);
+        const res = await upload_file({
+          file: imageFile,
+          uploadPath: "/images/",
+          fileName: imageFile.name,
+        });
+        console.log(res);
       } catch (error) {
         console.log(error);
       } finally {
