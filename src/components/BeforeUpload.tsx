@@ -27,7 +27,7 @@ function BeforeUpload({ setIsUploading, setUrl }: BeforeUploadProps) {
           uploadPath: "/images/",
           fileName: imageFile.name,
         });
-        console.log(res);
+        setUrl(res);
       } catch (error) {
         console.log(error);
       } finally {

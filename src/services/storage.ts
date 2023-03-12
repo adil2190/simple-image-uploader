@@ -28,7 +28,7 @@ export const upload_file = (
     metadata,
   }: uploadFile,
   progressCallback = (percent: number) => {}
-) => {
+): Promise<string> => {
   return new Promise((res, rej) => {
     if (uploadPath[uploadPath.length - 1] !== "/") uploadPath += "/";
 
